@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            {% if user %}
+            <title>{{ user }} notes</title>
+            {% endif %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='notes.css') }}">
+        </head>
+        <body>
+            <ul id="ul">
+                {% if user %}
+            <li class="li"><label>{{ user }}</label></li>
+            {% endif %}
+            <li id="logout" class="li"><a href = "/">logout</a></li>
+        </ul>
+        <div id="formDiv">
+            <form id = "addNote" action="/addNote" method="post" class="form">
+                <h1>Add note</h1>
+                <textarea rows="1" type="text" name="sub" class="input" placeholder="Subject"></textarea><br><br>
+                <textarea type="text" id="body" name="body" class="input" placeholder="Body"></textarea><br><br>
+                {%  if error %}
+                <label id = "error">{{ error }}</label><br><br>
+                {% endif %}
+                <input onclick="click()" type="submit" value="Submit" id="sub"><br><br>
+            </form>
+        </div>
+                <script>
+                function click(){
+                let myForm = document.getElementById('addNote');
+                myForm.submit();
+                }
+            </script>
+            <div id="notes">
+            <ul id = "notesList">
+            {% for note in notes %}
+            <a href = "#" id="note">
+                <h2 class="noteField">{{ note.subject }}</h2><br>
+                <p class="noteField">{{ note.body }}</p><br>
+                <img class="noteField" id="{{note.id}}" width="42" height="42" onclick="deleteNote(this.id)" src="{{ url_for('static', filename='delete.png') }}"></img>
+            </a>
+            {% endfor %}
+        </ul>
+                <script>
+                    function deleteNote(id){
+                        window.location.href='/deleteNote?arg=' + id
+                    }
+                </script>
+            
+        
+        </div>
+        </body>
+    </html>

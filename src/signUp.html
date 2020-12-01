@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Notes</title>
+            <link rel = "stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        </head>
+        <body>
+            <div id="formDiv">
+            <form id = "signupForm" action="/trysignUp" method="post" class="form">
+            <h1>Sign up</h1>
+            <input type="text" class="input"  id="fname" name="Uname" placeholder="Username"><br><br>
+            <input type="text" class="input"  id="mail" name="Mail" placeholder="Mail"><br><br>
+            <input type="password" class="input"  id="Password" name="Password" placeholder="Password"><br><br>
+            <input type="password" class="input"  id="conPassword" name="conPassword" placeholder="Confirm password"><br><br>
+            {%  if error %}
+            <label id = "error">{{ error }}</label><br><br>
+            {% endif %}
+            <label>already have an account? </label><br><br><a href = "/">sign in!</a><br><br>
+            <input onclick="click()" type="submit" value="Submit" id="sub">
+            </form>
+        </div>
+            <script>
+                function click(){
+                let myForm = document.getElementById('signupForm');
+                myForm.submit();
+                }
+            </script>
+
+
+
+        </body>
+    </html>

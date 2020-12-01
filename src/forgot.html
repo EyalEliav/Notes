@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Forgot password</title>
+            <link rel = "stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        </head>
+        <body>
+            <div id="formDiv">
+            <form id = "sub_user" action="/sub_user" method="post" class="form">
+                <h1>Forgot password</h1>
+                <input type="text" id="Uname" name="Uname" placeholder="Username" class="input"><br><br>
+                {%  if error %}
+                <label id = "error">{{ error }}</label><br><br>
+                {% endif %}
+                <input onclick="click()" type="submit" value="Submit" id="sub">
+                </form>
+            </div>
+                <script>
+                    function click(){
+                    let myForm = document.getElementById('restPass');
+                    myForm.submit();
+                    }
+                </script>
+
+
+
+        </body>
+    </html>
